@@ -4,6 +4,7 @@ const exitBtn = infoBox.querySelector(".quit-quiz");
 const continueBtn = infoBox.querySelector(".restart");
 const quizBox = document.querySelector(".quiz-box");
 const nextBtn = document.querySelector(".next-btn");
+const resultBox = document.querySelector(".result-box");
 
 
 
@@ -22,26 +23,38 @@ let questionCount = 0;
 showQuestions = (i) => {
     let questionText = document.querySelector(".question-text");
     let optionList = document.querySelector(".option-list");
-    let questionTag = `<span>${questions[i].question}</span>`;
+    let questionTag = `${questions[i].question}`;
     let optionTags = '';
+    let currentQ = document.querySelector(".current-q");
+    let totalQ = document.querySelector(".total-q");
+    currentQ.innerHTML = questions[i].num;
+    totalQ.innerHTML = questions.length;
 
     for (let optionIndex = 0; optionIndex < questions[i].options.length; optionIndex++) {
-        optionTags += `<div class="option">${questions[i].options[optionIndex]}</div>`;
+        let optionWrap = document.createElement("div");
+        optionWrap.classList.add("option");
+        optionWrap.textContent = questions[i].options[optionIndex];
+        optionTags += optionWrap.outerHTML;
     }
 
-    questionText.innerHTML = questionTag;
+    questionText.textContent = questionTag;
     optionList.innerHTML = optionTags;
-
-    // Render options' content as plain text
-    optionList.querySelectorAll('.option').forEach(option => {
-        option.textContent = option.textContent;
-    });
 };
 
 
 
-
 nextBtn.onclick = () => {
-    questionCount++;
-    showQuestions(questionCount);
+    if (questionCount < questions.length - 2) {
+        questionCount++;
+        showQuestions(questionCount);
+    }
+    else if (questionCount < questions.length - 1) {
+        questionCount++;
+        showQuestions(questionCount);
+        nextBtn.innerHTML = `Submit Exam<i class="fa-solid fa-check"></i>`
+    }
+    else {
+        quizBox.classList.remove("visible");
+        resultBox.classList.add("visible");
+    };
 }
