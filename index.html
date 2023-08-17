@@ -17,7 +17,6 @@
 
 <body>
 
-    <!-- Start Button -->
     <div class="start-btn visible"><button>Start Quiz</button></div>
     <div class="info-box">
         <div class="info-title">
@@ -36,13 +35,15 @@
         </div>
     </div>
 
-    <!-- Quiz Box -->
     <div class="quiz-box">
         <header>
             <div class="title">Examin8&copy;</div>
             <div class="timer">
                 <div class="timer-text">Time Left</div>
                 <div class="timer-sec">15</div>
+            </div>
+            <div class="time-line">
+
             </div>
         </header>
         <section>
@@ -52,7 +53,7 @@
                     <div class="icon cross"></div>
                 </div>
                 <div class="option"><span>Hypertext Markup Language</span>
-                    <div class="icon tick"><i class="fa-solid fa-square-check"></i></div>
+
                 </div>
                 <div class="option"><span>Hypertrack Mode Language</span>
                     <div class="icon cross"><i class="fa-solid fa-square-xmark"></i></div>
@@ -76,7 +77,8 @@
     <div class="result-box">
         <div class="icon"><i class="fa-solid fa-crown"></i></div>
         <div class="complete-text">You have completed the Quiz!</div>
-        <div class="score-text"><span>and sorry you got only <p>2</p> out of <p>50</p></span></div>
+        <div class="score-text"><span>and you got <p class="score"></p> correct answers out of <p class="all-total"></p>
+            </span></div>
         <div class="buttons">
             <button class="restart">Replay Quiz</button>
             <button class="quit-quiz">End Quiz</button>

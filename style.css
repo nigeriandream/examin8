@@ -186,6 +186,16 @@
       user-select: none;
   }
 
+  .quiz-box header .time-line {
+      position: absolute;
+      left: 0px;
+      bottom: 0px;
+      width: 50%;
+      height: 2px;
+      background: #a42834;
+      transition: width 0.1s ease;
+  }
+
   .quiz-box section {
       padding: 25px 30px 20px 30px;
       background: #fff;
@@ -235,7 +245,7 @@
       /* height: 35px;
       width: 35px; */
       text-align: center;
-      font-size: 30px;
+      font-size: 28px;
       line-height: 30px;
       pointer-events: none;
   }
