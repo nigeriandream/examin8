@@ -5,6 +5,7 @@ const continueBtn = infoBox.querySelector(".restart");
 const quizBox = document.querySelector(".quiz-box");
 const nextBtn = document.querySelector(".next-btn");
 const resultBox = document.querySelector(".result-box");
+let optionList = document.querySelector(".option-list");
 
 
 
@@ -22,8 +23,7 @@ let questionCount = 0;
 
 showQuestions = (i) => {
     let questionText = document.querySelector(".question-text");
-    let optionList = document.querySelector(".option-list");
-    let questionTag = `${questions[i].question}`;
+    let questionTag = `${questions[i].num}. ${questions[i].question}`;
     let optionTags = '';
     let currentQ = document.querySelector(".current-q");
     let totalQ = document.querySelector(".total-q");
@@ -39,7 +39,40 @@ showQuestions = (i) => {
 
     questionText.textContent = questionTag;
     optionList.innerHTML = optionTags;
+
+    const option = optionList.querySelectorAll(".option");
+    for (let i = 0; i < option.length; i++) {
+        option[i].setAttribute("onclick", 'optionSelected(this)');
+
+    }
 };
+
+optionSelected = (ans) => {
+    let userAnswer = ans.textContent;
+    let correctAnswer = questions[questionCount].answer;
+    let allOptions = optionList.children.length;
+    if (userAnswer == correctAnswer) {
+        ans.classList.add("correct");
+        console.log('right');
+    }
+    else {
+        ans.classList.add("incorrect");
+        console.log('wrong');
+
+        for (let i = 0; i < allOptions; i++) {
+            if (optionList.children[i].textContent == correctAnswer) {
+                optionList.children[i].setAttribute("class", "correct option");
+            }
+
+        }
+    }
+
+    for (let i = 0; i < allOptions; i++) {
+        optionList.children[i].classList.add("disabled")
+
+    }
+
+}
 
 
 
