@@ -40,6 +40,14 @@ function startTimer(time) {
 
         time--;
 
+        if (percentageRemaining > 66) {
+            timeLine.style.background = "#00ff00";
+        } else if (percentageRemaining > 33) {
+            timeLine.style.background = "#ffaa00";
+        } else {
+            timeLine.style.background = "#ff0000";
+        }
+
         if (time < 99) {
             let addZero = timeCount.textContent;
             timeCount.textContent = "0" + addZero;
@@ -48,6 +56,10 @@ function startTimer(time) {
         if (time < 0) {
             clearInterval(counter);
             timeCount.textContent = "00";
+            optionList.querySelectorAll(".option").forEach(option => {
+                option.classList.add("disabled");
+            });
+            nextBtn.style.display = "block";
         }
     }
 }
@@ -55,6 +67,7 @@ function startTimer(time) {
 let questionCount = 0;
 
 showQuestions = (i) => {
+    nextBtn.style.display = "none";
     let questionText = document.querySelector(".question-text");
     let questionTag = `${questions[i].num}. ${questions[i].question}`;
     let optionTags = '';
@@ -90,6 +103,7 @@ optionSelected = (ans) => {
         console.log('right');
         ans.insertAdjacentHTML("beforeend", tickIcon);
         score++;
+        nextBtn.style.display = "block";
     }
     else {
         ans.classList.add("incorrect");
@@ -102,6 +116,8 @@ optionSelected = (ans) => {
             }
 
         }
+        nextBtn.style.display = "block";
+
     }
 
     for (let i = 0; i < allOptions; i++) {

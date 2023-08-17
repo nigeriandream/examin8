@@ -351,6 +351,10 @@
       font-weight: 500;
   }
 
+  .result-box .score-text span {
+      display: flex;
+  }
+
   .result-box .score-text p {
       font-weight: 600;
       padding: 0 4px;
